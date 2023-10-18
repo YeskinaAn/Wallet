@@ -4,7 +4,7 @@ export const DEFAULT_ERROR_MESSAGE = "Oops, something went wrong";
 export const DEFAULT_SAVED_MESSAGE = "Changes have been saved";
 
 export const privateCostsApi = axios.create({
-  baseURL: "http://localhost:3001",
+  baseURL: "http://localhost:8080/api/wallet",
 });
 const token = localStorage.getItem("token");
 
