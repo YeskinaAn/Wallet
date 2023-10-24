@@ -39,13 +39,11 @@ const createExpenses = async (req: CustomRequest, res: Response) => {
 
   const updatedIncomeValue = userIncome.incomeValue - expenseValue;
 
-  // console.log(userIncome, 99)
-
   await prisma.income.update({
     where: { id: userIncome.id },
     data: {
       incomeValue: updatedIncomeValue,
-      category: userIncome.category, // Set the same category as the existing one
+      category: userIncome.category, 
     },
   });
 

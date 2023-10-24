@@ -50,7 +50,7 @@ const Costs = () => {
     (acc, curr) => acc + curr.expenseValue,
     0
   );
-    const deleteIncome = useDeleteIncome();
+  // const deleteIncome = useDeleteIncome();
 
   console.log(expensesData);
   return (
@@ -184,7 +184,7 @@ const Costs = () => {
               </Typography>
             </Box>
 
-{/* 
+            {/* 
             <Box>
               {incomeData?.map((res) => (
                 <Box display="flex" key={res.id}>
