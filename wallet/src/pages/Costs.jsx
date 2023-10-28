@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useCreateExpense, useDeleteIncome } from "../lib/mutations";
 import { useCreateIncome } from "../lib/mutations";
 import Menu from "../components/Menu";
+import ExpenseChart from "../components/ExpenseChart";
 
 const Costs = () => {
   const [expenseCategory, setExpenseCategory] = useState("");
@@ -45,6 +46,7 @@ const Costs = () => {
   const { data: expensesData } = useQuery({
     queryKey: [`/expenses`],
   });
+
   const incomeSummary = incomeData?.map((item) => item.incomeValue);
   const expenseSummary = expensesData?.reduce(
     (acc, curr) => acc + curr.expenseValue,
@@ -53,6 +55,7 @@ const Costs = () => {
   // const deleteIncome = useDeleteIncome();
 
   console.log(expensesData);
+
   return (
     <>
       <Menu />
@@ -160,10 +163,11 @@ const Costs = () => {
           </Box>
           <Box
             display="flex"
-            pt={4}
+            py={4}
             gap={2}
             width="100%"
             flexDirection="column"
+            borderBottom="2px solid #2b8aea"
             alignItems="flex-start">
             <Box display="flex" gap={2}>
               <Typography
@@ -183,7 +187,6 @@ const Costs = () => {
                 {incomeSummary}₴
               </Typography>
             </Box>
-
             {/* 
             <Box>
               {incomeData?.map((res) => (
@@ -197,6 +200,7 @@ const Costs = () => {
               ))}
             </Box> */}
           </Box>
+          <ExpenseChart />
         </Box>
       </Box>
     </>
