@@ -54,8 +54,6 @@ const Costs = () => {
   );
   // const deleteIncome = useDeleteIncome();
 
-  console.log(expensesData);
-
   return (
     <>
       <Menu />

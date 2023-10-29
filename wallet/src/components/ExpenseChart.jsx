@@ -7,7 +7,7 @@ const ExpenseChart = () => {
   });
   const combinedCategories = {};
 
-   expensesData
+  expensesData
     ?.map((el) => [el.category, el.expenseValue])
     .forEach((entry) => {
       const category = entry[0];
@@ -19,13 +19,12 @@ const ExpenseChart = () => {
         combinedCategories[category] = expenseValue;
       }
     });
+
   const options = {
     title: "My Expenses",
   };
   const chartData = Object.entries(combinedCategories);
 
-  console.log(combinedCategories);
-  //   console.warn(chartData);
   return (
     <Chart
       chartType="PieChart"
