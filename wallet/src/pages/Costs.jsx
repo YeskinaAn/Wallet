@@ -14,6 +14,7 @@ import { useCreateExpense, useDeleteIncome } from "../lib/mutations";
 import { useCreateIncome } from "../lib/mutations";
 import Menu from "../components/Menu";
 import ExpenseChart from "../components/ExpenseChart";
+import { showIcon } from "../utils/functions";
 
 const Costs = () => {
   const [expenseCategory, setExpenseCategory] = useState("");
@@ -53,7 +54,6 @@ const Costs = () => {
     0
   );
   // const deleteIncome = useDeleteIncome();
-
   return (
     <>
       <Menu />
@@ -93,6 +93,7 @@ const Costs = () => {
                 <Box gap={2}>
                   <FormControl sx={{ minWidth: "170px", mx: 2 }}>
                     <Select
+                      sx={{ display: "flex" }}
                       labelId="demo-simple-select-label"
                       id="demo-simple-select"
                       value={expenseCategory}
@@ -101,7 +102,7 @@ const Costs = () => {
                       }>
                       {expenseCategories.map((el, i) => (
                         <MenuItem key={i} value={el}>
-                          {el}
+                          {el} {showIcon(el)}
                         </MenuItem>
                       ))}
                     </Select>
