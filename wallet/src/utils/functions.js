@@ -9,6 +9,9 @@ import RedeemIcon from "@mui/icons-material/Redeem";
 import HealthAndSafetyIcon from "@mui/icons-material/HealthAndSafety";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import SportsTennisIcon from "@mui/icons-material/SportsTennis";
+import PaymentsIcon from "@mui/icons-material/Payments";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import CardMembershipIcon from "@mui/icons-material/CardMembership";
 
 export const formatDate = (date) => {
   let objectDate = new Date(date);
@@ -46,7 +49,7 @@ export const formatDate = (date) => {
   }
 };
 
-export const showIcon = (category) => {
+export const showExpensesIcons = (category) => {
   switch (category) {
     case "food":
       return <BakeryDiningIcon />;
@@ -70,6 +73,21 @@ export const showIcon = (category) => {
       return <ConnectingAirportsIcon />;
     case "sport":
       return <SportsTennisIcon />;
+    default:
+      return "";
+  }
+};
+
+export const showIncomeIcons = (category) => {
+  switch (category) {
+    case "salary":
+      return <PaymentsIcon />;
+    case "bonus":
+      return <AttachMoneyIcon />;
+    case "freelance":
+      return <CardMembershipIcon />;
+    case "gifts":
+      return <RedeemIcon />;
     default:
       return "";
   }

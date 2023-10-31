@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useDeleteExpense } from "../lib/mutations";
 import Menu from "../components/Menu";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { formatDate, showIcon } from "../utils/functions";
+import { formatDate, showExpensesIcons } from "../utils/functions";
 
 const Expenses = () => {
   const { data: expensesData } = useQuery({
@@ -33,7 +33,6 @@ const Expenses = () => {
           sx={{ textAlign: "center", mb: 4, fontWeight: 600 }}>
           Expenses history
         </Typography>
-
         <Box
           sx={{
             display: "flex",
@@ -82,7 +81,7 @@ const Expenses = () => {
                               alignItems: "center",
                               ml: 0.5,
                             }}>
-                            {showIcon(res.category)}
+                            {showExpensesIcons(res.category)}
                           </Typography>
                         </Box>
                       </Box>

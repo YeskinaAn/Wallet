@@ -14,7 +14,7 @@ import { useCreateExpense, useDeleteIncome } from "../lib/mutations";
 import { useCreateIncome } from "../lib/mutations";
 import Menu from "../components/Menu";
 import ExpenseChart from "../components/ExpenseChart";
-import { showIcon } from "../utils/functions";
+import { showExpensesIcons, showIncomeIcons } from "../utils/functions";
 
 const Costs = () => {
   const [expenseCategory, setExpenseCategory] = useState("");
@@ -102,7 +102,7 @@ const Costs = () => {
                       }>
                       {expenseCategories.map((el, i) => (
                         <MenuItem key={i} value={el}>
-                          {el} {showIcon(el)}
+                          {el} {showExpensesIcons(el)}
                         </MenuItem>
                       ))}
                     </Select>
@@ -138,7 +138,7 @@ const Costs = () => {
                       }>
                       {incomeCategories.map((el, i) => (
                         <MenuItem key={i} value={el}>
-                          {el}
+                          {el} {showIncomeIcons(el)}
                         </MenuItem>
                       ))}
                     </Select>
