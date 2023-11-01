@@ -1,7 +1,7 @@
 import { Box, Button, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
-const Menu = () => {
+const Header = () => {
   const history = useHistory();
 
   const logout = () => {
@@ -13,6 +13,8 @@ const Menu = () => {
       position="fixed"
       width="100%"
       p={2}
+      backgroundColor="white"
+      zIndex={20}
       display="flex"
       justifyContent="space-between"
       alignItems="center"
@@ -23,11 +25,15 @@ const Menu = () => {
         </Link>
         <Link href="/expenses">Expenses</Link>
       </Box>
-      <Button sx={{ mr: "40px" }} onClick={logout}>
+      <Button
+        variant="outlined"
+        color="primary"
+        sx={{ mr: "40px" }}
+        onClick={logout}>
         Log out
       </Button>
     </Box>
   );
 };
 
-export default Menu;
+export default Header;

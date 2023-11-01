@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { useDeleteExpense } from "../lib/mutations";
-import Menu from "../components/Menu";
+import Header from "../components/Header";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { formatDate, showExpensesIcons } from "../utils/functions";
 
@@ -23,7 +23,7 @@ const Expenses = () => {
 
   return (
     <>
-      <Menu />
+      <Header />
       <Box
         sx={{
           m: "120px 80px 80px 80px",

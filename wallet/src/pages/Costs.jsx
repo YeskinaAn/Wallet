@@ -12,7 +12,7 @@ import { expenseCategories, incomeCategories } from "../utils/constants";
 import { useState } from "react";
 import { useCreateExpense, useDeleteIncome } from "../lib/mutations";
 import { useCreateIncome } from "../lib/mutations";
-import Menu from "../components/Menu";
+import Header from "../components/Header";
 import ExpenseChart from "../components/ExpenseChart";
 import { showExpensesIcons, showIncomeIcons } from "../utils/functions";
 
@@ -56,7 +56,7 @@ const Costs = () => {
   // const deleteIncome = useDeleteIncome();
   return (
     <>
-      <Menu />
+      <Header />
       <Box
         sx={{
           m: "120px 80px 80px 80px",
