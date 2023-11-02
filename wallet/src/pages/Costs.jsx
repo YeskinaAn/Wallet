@@ -15,6 +15,7 @@ import { useCreateIncome } from "../lib/mutations";
 import Header from "../components/Header";
 import ExpenseChart from "../components/ExpenseChart";
 import { showExpensesIcons, showIncomeIcons } from "../utils/functions";
+import IncomeChart from "../components/IncomeChart";
 
 const Costs = () => {
   const [expenseCategory, setExpenseCategory] = useState("");
@@ -38,6 +39,8 @@ const Costs = () => {
       category: incomeCategory,
       incomeValue: Number(incomeValue),
     });
+    setIncomeCategory('')
+    setIncomeValue('')
   };
 
   const { data: incomeData } = useQuery({
@@ -48,7 +51,11 @@ const Costs = () => {
     queryKey: [`/expenses`],
   });
 
-  const incomeSummary = incomeData?.map((item) => item.incomeValue);
+  const incomeSummary = incomeData?.reduce(
+    (acc, curr) => acc + curr.incomeValue,
+    0
+  );
+
   const expenseSummary = expensesData?.reduce(
     (acc, curr) => acc + curr.expenseValue,
     0
@@ -82,7 +89,7 @@ const Costs = () => {
             <Typography variant="h2">My costs</Typography>
             <Box display="flex" m={3}>
               <Typography>Base wallet:</Typography>
-              <Typography ml={2}>{incomeSummary}</Typography>
+              <Typography ml={2}>{incomeSummary}₴</Typography>
             </Box>
             <Box gap={2} display="flex" flexDirection="column">
               <Box gap={3} display="flex">
@@ -185,9 +192,8 @@ const Costs = () => {
               <Typography sx={{ fontSize: "24px" }}>
                 {incomeSummary}₴
               </Typography>
-            </Box>
-            {/* 
-            <Box>
+            </Box>  
+            {/* <Box>
               {incomeData?.map((res) => (
                 <Box display="flex" key={res.id}>
                   <Typography>{res.category}</Typography>
@@ -200,6 +206,7 @@ const Costs = () => {
             </Box> */}
           </Box>
           <ExpenseChart />
+          <IncomeChart/>
         </Box>
       </Box>
     </>
