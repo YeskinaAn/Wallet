@@ -192,7 +192,7 @@ const Costs = () => {
               <Typography sx={{ fontSize: "24px" }}>
                 {incomeSummary}₴
               </Typography>
-            </Box>  
+            </Box>
             {/* <Box>
               {incomeData?.map((res) => (
                 <Box display="flex" key={res.id}>
@@ -205,8 +205,10 @@ const Costs = () => {
               ))}
             </Box> */}
           </Box>
-          <ExpenseChart />
-          <IncomeChart/>
+          <Box width="100%" borderBottom="2px solid #2b8aea">
+            <ExpenseChart />
+          </Box>
+          <IncomeChart />
         </Box>
       </Box>
     </>

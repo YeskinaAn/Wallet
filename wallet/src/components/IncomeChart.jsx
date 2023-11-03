@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Chart } from "react-google-charts";
 
@@ -21,18 +22,23 @@ const IncomeChart = () => {
     });
 
   const options = {
-    title: "My Income",
+    title: "",
   };
   const chartData = Object.entries(combinedCategories);
 
   return (
-    <Chart
-      chartType="PieChart"
-      data={[["Income", "per month"], ...chartData]}
-      options={options}
-      width={"100%"}
-      height={"400px"}
-    />
+    <>
+      <Typography sx={{ textAlign: "center", mt: 3 }} variant="h2">
+        My income
+      </Typography>
+      <Chart
+        chartType="PieChart"
+        data={[["Income", "per month"], ...chartData]}
+        options={options}
+        width={"100%"}
+        height={"400px"}
+      />
+    </>
   );
 };
 export default IncomeChart;
