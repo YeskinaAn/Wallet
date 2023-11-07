@@ -1,48 +1,12 @@
-import {
-  Box,
-  Button,
-  FormControl,
-  MenuItem,
-  Select,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { expenseCategories, incomeCategories } from "../utils/constants";
-import { useState } from "react";
-import { useCreateExpense, useDeleteIncome } from "../lib/mutations";
-import { useCreateIncome } from "../lib/mutations";
 import Header from "../components/Header";
 import ExpenseChart from "../components/ExpenseChart";
-import { showExpensesIcons, showIncomeIcons } from "../utils/functions";
 import IncomeChart from "../components/IncomeChart";
+import ExpensesSelect from "../components/ExpensesSelect";
+import IncomeSelect from "../components/IncomeSelect";
 
 const Costs = () => {
-  const [expenseCategory, setExpenseCategory] = useState("");
-  const [expenseValue, setExpenseValue] = useState("");
-  const [incomeCategory, setIncomeCategory] = useState("");
-  const [incomeValue, setIncomeValue] = useState("");
-  const incomeMutation = useCreateIncome();
-  const expenseMutation = useCreateExpense();
-
-  const handleOkExpenseChange = () => {
-    expenseMutation.mutate({
-      category: expenseCategory,
-      expenseValue: Number(expenseValue),
-    });
-    setExpenseCategory("");
-    setExpenseValue("");
-  };
-
-  const handleOkIncomeChange = () => {
-    incomeMutation.mutate({
-      category: incomeCategory,
-      incomeValue: Number(incomeValue),
-    });
-    setIncomeCategory('')
-    setIncomeValue('')
-  };
-
   const { data: incomeData } = useQuery({
     queryKey: [`/income`],
   });
@@ -92,79 +56,8 @@ const Costs = () => {
               <Typography ml={2}>{incomeSummary}₴</Typography>
             </Box>
             <Box gap={2} display="flex" flexDirection="column">
-              <Box gap={3} display="flex">
-                <Typography
-                  sx={{ minWidth: "170px", fontWeight: 600, fontSize: "22px" }}>
-                  Select expenses
-                </Typography>
-                <Box gap={2}>
-                  <FormControl sx={{ minWidth: "170px", mx: 2 }}>
-                    <Select
-                      sx={{ display: "flex" }}
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={expenseCategory}
-                      onChange={(event) =>
-                        setExpenseCategory(event.target.value)
-                      }>
-                      {expenseCategories.map((el, i) => (
-                        <MenuItem key={i} value={el}>
-                          {el} {showExpensesIcons(el)}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <TextField
-                    variant="outlined"
-                    sx={{ width: "100px" }}
-                    value={expenseValue}
-                    placeholder="₴"
-                    onChange={(event) => setExpenseValue(event.target.value)}
-                  />
-                </Box>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={handleOkExpenseChange}>
-                  Add expense
-                </Button>
-              </Box>
-              <Box gap={3} display="flex">
-                <Typography
-                  sx={{ minWidth: "170px", fontWeight: 600, fontSize: "22px" }}>
-                  Select income
-                </Typography>
-                <Box gap={2}>
-                  <FormControl sx={{ minWidth: "170px", mx: 2 }}>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={incomeCategory}
-                      onChange={(event) =>
-                        setIncomeCategory(event.target.value)
-                      }>
-                      {incomeCategories.map((el, i) => (
-                        <MenuItem key={i} value={el}>
-                          {el} {showIncomeIcons(el)}
-                        </MenuItem>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <TextField
-                    variant="outlined"
-                    sx={{ width: "100px" }}
-                    placeholder="₴"
-                    value={incomeValue}
-                    onChange={(event) => setIncomeValue(event.target.value)}
-                  />
-                </Box>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  onClick={handleOkIncomeChange}>
-                  Add income
-                </Button>
-              </Box>
+              <ExpensesSelect />
+              <IncomeSelect />
             </Box>
           </Box>
           <Box
