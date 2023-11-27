@@ -12,12 +12,12 @@ import { useCreateExpense } from "../lib/mutations";
 import { showExpensesIcons } from "../utils/functions";
 import { expenseCategories } from '../utils/constants';
 
-const ExpensesSelect = () => {
+const ExpensesSelect = (): JSX.Element => {
   const [expenseCategory, setExpenseCategory] = useState("");
   const [expenseValue, setExpenseValue] = useState("");
   const expenseMutation = useCreateExpense();
 
-  const handleOkExpenseChange = () => {
+  const handleOkExpenseChange = (): void => {
     expenseMutation.mutate({
       category: expenseCategory,
       expenseValue: Number(expenseValue),

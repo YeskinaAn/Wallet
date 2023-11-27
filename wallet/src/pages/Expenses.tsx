@@ -4,15 +4,17 @@ import { useDeleteExpense } from "../lib/mutations";
 import Header from "../components/Header";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { formatDate, showExpensesIcons } from "../utils/functions";
+import { ExpensesType } from "../types/walletTypes";
 
-const Expenses = () => {
-  const { data: expensesData } = useQuery({
+
+const Expenses = (): JSX.Element => {
+  const { data: expensesData } = useQuery<ExpensesType[]>({
     queryKey: [`/expenses`],
   });
 
   const deleteExpense = useDeleteExpense();
 
-  const expensesByDate = expensesData?.reduce((acc, value) => {
+  const expensesByDate = expensesData?.reduce((acc: any, value) => {
     const formattedDate = formatDate(value.createdAt);
     const previousValue = acc[formattedDate];
     return {
@@ -47,12 +49,12 @@ const Expenses = () => {
           {expensesByDate &&
             Object.entries(expensesByDate)
               .reverse()
-              .map(([key, value], idx) => (
+              .map(([key, value]: [string, any], idx: number) => (
                 <Box key={idx}>
                   <Typography sx={{ fontSize: "28px", fontWeight: 600, my: 2 }}>
                     {key}
                   </Typography>
-                  {value.map((res) => (
+                  {value.map((res: ExpensesType) => (
                     <Box
                       mb={2}
                       borderRadius="10px"
@@ -91,7 +93,10 @@ const Expenses = () => {
                           border: "1px solid red",
                           ml: 2,
                         }}
-                        onClick={() => deleteExpense.mutate(res.id)}>
+                        onClick={() => {
+                          deleteExpense.mutate(res.id);
+                          console.log(res.id, typeof res.id)
+                        }}>
                         <DeleteIcon />
                       </Button>
                     </Box>

@@ -3,7 +3,8 @@ import LoginPage from "../pages/Login";
 import Costs from '../pages/Costs';
 import Expenses from "../pages/Expenses";
 
-const App = () => {
+
+const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>

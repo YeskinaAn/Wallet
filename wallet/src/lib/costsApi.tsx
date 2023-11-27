@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { InternalAxiosRequestConfig } from "axios";
 
 export const DEFAULT_ERROR_MESSAGE = "Oops, something went wrong";
 export const DEFAULT_SAVED_MESSAGE = "Changes have been saved";
@@ -13,5 +13,5 @@ privateCostsApi.interceptors.request.use((config) => ({
   headers: {
     ...config.headers,
     Authorization: `Bearer ${token}`,
-  },
+  } as InternalAxiosRequestConfig["headers"],
 }));

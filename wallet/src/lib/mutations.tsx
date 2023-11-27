@@ -1,12 +1,13 @@
-import { useMutation } from "@tanstack/react-query";
+import { UseMutationResult, useMutation } from "@tanstack/react-query";
 import { privateCostsApi } from "./costsApi";
 import { queryClient } from "./queryClient";
+import { ExpensesType, IncomeType } from "../types/walletTypes";
 
-export const useCreateExpense = () =>
+export const useCreateExpense = (): UseMutationResult<ExpensesType> =>
   useMutation({
-    mutationFn: (payload) => {
+    mutationFn: (payload: unknown) => {
       return privateCostsApi
-        .post(`/createExpenses`, payload)
+        .post<ExpensesType>(`/createExpenses`, payload)
         .then(({ data }) => data);
     },
     onSuccess: () =>
@@ -22,7 +23,7 @@ export const useCreateExpense = () =>
 
 export const useDeleteExpense = () =>
   useMutation({
-    mutationFn: (expenseId) => {
+    mutationFn: (expenseId: number) => {
       return privateCostsApi
         .delete(`/deleteExpense/${expenseId}`)
         .then(({ data }) => data);
@@ -33,11 +34,11 @@ export const useDeleteExpense = () =>
       }),
   });
 
-export const useCreateIncome = () =>
+export const useCreateIncome = (): UseMutationResult<IncomeType> =>
   useMutation({
-    mutationFn: (payload) => {
+    mutationFn: (payload: unknown) => {
       return privateCostsApi
-        .post(`/createIncome`, payload)
+        .post<IncomeType>(`/createIncome`, payload)
         .then(({ data }) => data);
     },
     onSuccess: () =>
@@ -48,7 +49,7 @@ export const useCreateIncome = () =>
 
 export const useDeleteIncome = () =>
   useMutation({
-    mutationFn: (incomeId) => {
+    mutationFn: (incomeId: number) => {
       return privateCostsApi
         .delete(`/deleteIncome/${incomeId}`)
         .then(({ data }) => data);

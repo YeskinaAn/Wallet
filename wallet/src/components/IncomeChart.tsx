@@ -1,12 +1,15 @@
 import { Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
-import { Chart } from "react-google-charts";
+import React from "react";
 
-const IncomeChart = () => {
-  const { data: incomeData } = useQuery({
+import { Chart } from "react-google-charts";
+import { IncomeType } from "../types/walletTypes";
+
+const IncomeChart = (): JSX.Element => {
+  const { data: incomeData } = useQuery<IncomeType[]>({
     queryKey: [`/income`],
   });
-  const combinedCategories = {};
+  const combinedCategories: { [key: string]: number } = {};
 
   incomeData
     ?.map((el) => [el.category, el.incomeValue])
@@ -15,9 +18,9 @@ const IncomeChart = () => {
       const incomeValue = entry[1];
 
       if (category in combinedCategories) {
-        combinedCategories[category] += incomeValue;
+        combinedCategories[category] += Number(incomeValue);
       } else {
-        combinedCategories[category] = incomeValue;
+        combinedCategories[category] = Number(incomeValue);
       }
     });
 

@@ -3,10 +3,10 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+const LoginPage = (): JSX.Element => {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
   const history = useHistory();
 
   const login = async () => {
@@ -20,7 +20,7 @@ const LoginPage = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
       history.push("/costs");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setError(error.response.data.error);
     }
@@ -38,7 +38,7 @@ const LoginPage = () => {
       localStorage.setItem("user", JSON.stringify(user));
 
       history.push("/costs");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setError(error.response.data.error);
     }
@@ -48,8 +48,7 @@ const LoginPage = () => {
       container
       justifyContent="center"
       alignItems="center"
-      style={{ minHeight: "100vh" }}
-    >
+      style={{ minHeight: "100vh" }}>
       <Box display="flex" flexDirection="column">
         <TextField
           sx={{ marginBottom: "1rem" }}

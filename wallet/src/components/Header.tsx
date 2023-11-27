@@ -1,7 +1,7 @@
 import { Box, Button, Link } from "@mui/material";
 import { useHistory } from "react-router-dom";
 
-const Header = () => {
+const Header = (): JSX.Element => {
   const history = useHistory();
 
   const logout = () => {
@@ -13,11 +13,11 @@ const Header = () => {
       position="fixed"
       width="100%"
       p={2}
-      backgroundColor="white"
       zIndex={20}
       display="flex"
       justifyContent="space-between"
       alignItems="center"
+      sx={{ backgroundColor: "white" }}
       top={0}>
       <Box>
         <Link mr={2} href="/costs">

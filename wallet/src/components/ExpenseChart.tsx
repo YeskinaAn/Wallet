@@ -1,23 +1,26 @@
 import { Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import { Chart } from "react-google-charts";
+import { ExpensesType } from "../types/walletTypes";
 
-const ExpenseChart = () => {
-  const { data: expensesData } = useQuery({
+const ExpenseChart = (): JSX.Element => {
+  
+  const { data: expensesData } = useQuery<ExpensesType[]>({
     queryKey: [`/expenses`],
   });
-  const combinedCategories = {};
+
+  const combinedCategories: { [key: string]: number } = {};
 
   expensesData
-    ?.map((el) => [el.category, el.expenseValue])
+    ?.map((el: ExpensesType) => [el.category, el.expenseValue])
     .forEach((entry) => {
       const category = entry[0];
       const expenseValue = entry[1];
 
       if (category in combinedCategories) {
-        combinedCategories[category] += expenseValue;
+        combinedCategories[category] += Number(expenseValue);
       } else {
-        combinedCategories[category] = expenseValue;
+        combinedCategories[category] = Number(expenseValue);
       }
     });
 
@@ -33,7 +36,7 @@ const ExpenseChart = () => {
       </Typography>
       <Chart
         chartType="PieChart"
-        data={[["Expenses", "per month"], ...chartData]}
+        data={[["ExpensesType", "per month"], ...chartData]}
         options={options}
         width={"100%"}
         height={"400px"}

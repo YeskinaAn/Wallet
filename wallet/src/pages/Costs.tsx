@@ -1,17 +1,19 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import Header from "../components/Header";
 import ExpenseChart from "../components/ExpenseChart";
 import IncomeChart from "../components/IncomeChart";
 import ExpensesSelect from "../components/ExpensesSelect";
 import IncomeSelect from "../components/IncomeSelect";
+import { ExpensesType, IncomeType } from "../types/walletTypes";
+import { useDeleteIncome } from "../lib/mutations";
 
-const Costs = () => {
-  const { data: incomeData } = useQuery({
+const Costs = (): JSX.Element => {
+  const { data: incomeData } = useQuery<IncomeType[]>({
     queryKey: [`/income`],
   });
 
-  const { data: expensesData } = useQuery({
+  const { data: expensesData } = useQuery<ExpensesType[]>({
     queryKey: [`/expenses`],
   });
 

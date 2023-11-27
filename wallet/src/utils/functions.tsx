@@ -13,7 +13,7 @@ import PaymentsIcon from "@mui/icons-material/Payments";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import CardMembershipIcon from "@mui/icons-material/CardMembership";
 
-export const formatDate = (date) => {
+export const formatDate = (date: string): string => {
   let objectDate = new Date(date);
   let day = objectDate.getDate();
   let month = objectDate.getMonth();
@@ -49,7 +49,7 @@ export const formatDate = (date) => {
   }
 };
 
-export const showExpensesIcons = (category) => {
+export const showExpensesIcons = (category: string): JSX.Element | string => {
   switch (category) {
     case "food":
       return <BakeryDiningIcon />;
@@ -72,13 +72,13 @@ export const showExpensesIcons = (category) => {
     case "travel":
       return <ConnectingAirportsIcon />;
     case "sport":
-      return <SportsTennisIcon />;
+      return <SportsTennisIcon /> ;
     default:
       return "";
   }
 };
 
-export const showIncomeIcons = (category) => {
+export const showIncomeIcons = (category: string): JSX.Element | string => {
   switch (category) {
     case "salary":
       return <PaymentsIcon />;
