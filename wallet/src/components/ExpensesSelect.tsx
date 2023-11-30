@@ -13,8 +13,8 @@ import { showExpensesIcons } from "../utils/functions";
 import { expenseCategories } from '../utils/constants';
 
 const ExpensesSelect = (): JSX.Element => {
-  const [expenseCategory, setExpenseCategory] = useState("");
-  const [expenseValue, setExpenseValue] = useState("");
+  const [expenseCategory, setExpenseCategory] = useState<string>("");
+  const [expenseValue, setExpenseValue] = useState<string>("");
   const expenseMutation = useCreateExpense();
 
   const handleOkExpenseChange = (): void => {

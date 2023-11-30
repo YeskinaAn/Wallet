@@ -7,26 +7,27 @@ import ExpensesSelect from "../components/ExpensesSelect";
 import IncomeSelect from "../components/IncomeSelect";
 import { ExpensesType, IncomeType } from "../types/walletTypes";
 import { useDeleteIncome } from "../lib/mutations";
+import { useEffect } from "react";
 
-const Costs = (): JSX.Element => {
+const Statistics = (): JSX.Element => {
   const { data: incomeData } = useQuery<IncomeType[]>({
     queryKey: [`/income`],
   });
 
-  const { data: expensesData } = useQuery<ExpensesType[]>({
+  const { data: expensesData }: any = useQuery<ExpensesType[]>({
     queryKey: [`/expenses`],
   });
 
-  const incomeSummary = incomeData?.reduce(
-    (acc, curr) => acc + curr.incomeValue,
-    0
-  );
+  let money: any = incomeData?.reduce((acc, curr) => acc + curr.incomeValue, 0);
+  const lastAddedExpense = expensesData?.[expensesData?.length - 1];
 
-  const expenseSummary = expensesData?.reduce(
-    (acc, curr) => acc + curr.expenseValue,
-    0
-  );
-  // const deleteIncome = useDeleteIncome();
+  // console.log(
+  //   money,
+  //   lastAddedExpense,
+  //   (money -= lastAddedExpense?.expenseValue)
+  // );
+
+  const deleteIncome = useDeleteIncome();
   return (
     <>
       <Header />
@@ -52,43 +53,21 @@ const Costs = (): JSX.Element => {
             sx={{ borderBottom: "2px solid #2b8aea" }}
             flexDirection="column"
             alignItems="center">
-            <Typography variant="h2">My costs</Typography>
+            <Typography variant="h1" sx={{ fontWeight: 600 }}>
+              My costs
+            </Typography>
             <Box display="flex" m={3}>
               <Typography>Base wallet:</Typography>
-              <Typography ml={2}>{incomeSummary}₴</Typography>
+              <Typography ml={2}>
+                {money - lastAddedExpense?.expenseValue}₴
+              </Typography>
             </Box>
             <Box gap={2} display="flex" flexDirection="column">
               <ExpensesSelect />
               <IncomeSelect />
             </Box>
           </Box>
-          <Box
-            display="flex"
-            py={4}
-            gap={2}
-            width="100%"
-            flexDirection="column"
-            borderBottom="2px solid #2b8aea"
-            alignItems="flex-start">
-            <Box display="flex" gap={2}>
-              <Typography
-                sx={{ minWidth: "170px", fontWeight: 600, fontSize: "22px" }}>
-                My expenses summary:
-              </Typography>
-              <Typography sx={{ fontSize: "24px" }}>
-                {expenseSummary}₴
-              </Typography>
-            </Box>
-            <Box display="flex" gap={2}>
-              <Typography
-                sx={{ minWidth: "170px", fontWeight: 600, fontSize: "22px" }}>
-                My income summary:
-              </Typography>
-              <Typography sx={{ fontSize: "24px" }}>
-                {incomeSummary}₴
-              </Typography>
-            </Box>
-            {/* <Box>
+          {/* <Box>
               {incomeData?.map((res) => (
                 <Box display="flex" key={res.id}>
                   <Typography>{res.category}</Typography>
@@ -99,7 +78,6 @@ const Costs = (): JSX.Element => {
                 </Box>
               ))}
             </Box> */}
-          </Box>
           <Box width="100%" borderBottom="2px solid #2b8aea">
             <ExpenseChart />
           </Box>
@@ -110,4 +88,4 @@ const Costs = (): JSX.Element => {
   );
 };
 
-export default Costs;
+export default Statistics;

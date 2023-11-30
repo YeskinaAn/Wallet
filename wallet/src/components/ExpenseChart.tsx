@@ -4,10 +4,14 @@ import { Chart } from "react-google-charts";
 import { ExpensesType } from "../types/walletTypes";
 
 const ExpenseChart = (): JSX.Element => {
-  
   const { data: expensesData } = useQuery<ExpensesType[]>({
     queryKey: [`/expenses`],
   });
+
+  const expenseSummary = expensesData?.reduce(
+    (acc, curr) => acc + curr.expenseValue,
+    0
+  );
 
   const combinedCategories: { [key: string]: number } = {};
 
@@ -32,7 +36,7 @@ const ExpenseChart = (): JSX.Element => {
   return (
     <>
       <Typography sx={{ textAlign: "center", mt: 3 }} variant="h2">
-        My expenses
+        My expenses: {expenseSummary}₴
       </Typography>
       <Chart
         chartType="PieChart"

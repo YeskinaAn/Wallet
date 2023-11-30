@@ -1,15 +1,14 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LoginPage from "../pages/Login";
-import Costs from '../pages/Costs';
-import Expenses from "../pages/Expenses";
-
+import Statistics from "../pages/Statistics";
+import History from "../pages/History";
 
 const App = (): JSX.Element => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/costs" component={Costs} />
-        <Route path="/expenses" component={Expenses} />
+        <Route path="/statistics" component={Statistics} />
+        <Route path="/history" component={History} />
         <Route exact path="/" component={LoginPage} />
       </Switch>
     </BrowserRouter>

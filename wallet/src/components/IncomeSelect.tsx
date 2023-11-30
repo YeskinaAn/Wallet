@@ -5,8 +5,8 @@ import { incomeCategories } from "../utils/constants";
 import { useCreateIncome } from '../lib/mutations';
 
 const IncomeSelect = (): JSX.Element => {
-  const [incomeCategory, setIncomeCategory] = useState("");
-  const [incomeValue, setIncomeValue] = useState("");
+  const [incomeCategory, setIncomeCategory] = useState<string>("");
+  const [incomeValue, setIncomeValue] = useState<string>("");
   const incomeMutation = useCreateIncome();
 
   const handleOkIncomeChange = () => {

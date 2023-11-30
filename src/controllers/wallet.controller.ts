@@ -27,34 +27,6 @@ const getExpenses = async (req: CustomRequest, res: Response) => {
 const createExpenses = async (req: CustomRequest, res: Response) => {
   const { expenseValue, category } = req.body;
   const userId = req.userId;
-  //fix it, remove overall income, not from exact category (salary/bonus/freelance). now it removes value fr0m the last added category
-  //also when I delete expanse, income doesnt increase
-
-  //  const userIncome = await prisma.income.aggregate({
-  //    where: { userId },
-  //    _sum: { incomeValue: true },
-  //  });
-
-  //  const totalIncomeValue = userIncome._sum?.incomeValue || 0;
-
-  const userIncome = await prisma.income.findFirst({
-    where: { userId },
-    orderBy: { createdAt: "desc" },
-  });
-
-  if (!userIncome) {
-    return res.status(400).json({ error: "User has no income record" });
-  }
-
-  const updatedIncomeValue = userIncome.incomeValue - expenseValue;
-
-  await prisma.income.update({
-    where: { id: userIncome.id },
-    data: {
-      incomeValue: updatedIncomeValue,
-      category: userIncome.category,
-    },
-  });
 
   const expenses = await prisma.expenses.create({
     data: {
@@ -95,7 +67,7 @@ const deleteExpense = async (req: Request, res: Response) => {
     });
     res.status(200).json(deletedExpense);
   } catch (e) {
-    console.log(e)
+    console.log(e);
     res.status(500).json({ error: e });
   }
 };

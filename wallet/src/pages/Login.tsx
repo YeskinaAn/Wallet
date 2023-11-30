@@ -19,7 +19,7 @@ const LoginPage = (): JSX.Element => {
       // save the token and user data in localStorage or a cookie
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
-      history.push("/costs");
+      history.push("/statistics");
     } catch (error: any) {
       console.log(error);
       setError(error.response.data.error);
@@ -37,7 +37,7 @@ const LoginPage = (): JSX.Element => {
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
-      history.push("/costs");
+      history.push("/statistics");
     } catch (error: any) {
       console.log(error);
       setError(error.response.data.error);

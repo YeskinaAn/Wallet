@@ -20,10 +20,10 @@ const Header = (): JSX.Element => {
       sx={{ backgroundColor: "white" }}
       top={0}>
       <Box>
-        <Link mr={2} href="/costs">
-          Costs
+        <Link mr={2} href="/statistics">
+          Statistics
         </Link>
-        <Link href="/expenses">Expenses</Link>
+        <Link href="/history">Records</Link>
       </Box>
       <Button
         variant="outlined"
